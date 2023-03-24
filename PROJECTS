@@ -1,0 +1,58 @@
+Greetings, we are always looking for useful additions to the SimpleScalar
+Tool Set.  The following list of suggested projects are just some of the things
+we'd like to see added.  Please donate your implementations to the main source
+release!  Regards, -Todd Austin
+
+Sample Projects:
+
+	- port a freely available operating system to SimpleScalar (contact
+	  us before you do this as this project may be underway)
+
+	- add multiple processor or multiple thread support to the SimpleScalar
+	  simulators (contact us before you do this as this project may be
+	  underway)
+
+	- add enhancements to sim-outorder:
+
+		- add writeback buffers to the cache interfaces
+		- add support for writethrough caches
+		- implement sector caches
+		- add support to limit the number of outstanding misses,
+		  i.e., make the number MSHR's a parameter
+		- implement DRAM timing when all cache miss, e.g., EDO/FPM
+		- add partials support to the LSQ
+		- add an option to allow the LSQ to schedule loads before
+		  all proceeding store addresses are known, and nuke the
+		  pipeline if a memory dependence is violated
+		- implement a better branch predictor, e.g., hybrid predictor
+		- add a trace cache to improve instruction delivery B/W
+		- add device emulation, e.g., define a frame buffer that
+		  programs can write to with frame buffer timing and
+		  maybe even a graphical output
+		- make the simulator run faster (contact the developer,
+		  taustin@ichips.intel.com, for a list of possible
+		  optimizations here...)
+		- add simulator support for signals
+		- implement true virtual memory (e.g., physical pages, page
+		  tables, TLB/page miss handlers)
+		- add interrupt support to the sim-outorder, for starters allow
+		  SimpleScalar handlers to be called got handling TLB misses
+
+	- create a visualization tool, e.g., a graphical pipe viewer
+
+	- add new system call support to the simulators, e.g., socket support,
+	  or fork() support
+
+	- create a binary re-writing tool for SimpleScalar binaries, similar
+	  to ATOM (ATOM has a great interface, consider implementing it
+	  as closely as possible, this will facilitate the porting of ATOM
+	  tools to the SimpleScalar environment)
+
+	- port another compiler to SimpleScalar, e.g., SUIF or IMPACT
+
+	- port the simulators to another instruction set, we've got a
+	  dated but working version of the simulators for MIPS/Ultrix;
+	  other targets we would like to see supported include x86/Linux,
+	  SPARC/Solaris, Alpha/OSF; there are provisions to facilitate these
+	  ports, contact taustin@ichips.intel.com for details
+

@@ -1,0 +1,428 @@
+SimpleScalar 3.0 release
+------------------------
+
+Greetings, SimpleScalar release 3.0 is now available.
+
+We've completed implementation and internal regression testing, and now we
+need current users to start testing this code.  In particular, we would
+really appreciate:
+
+	1) bug reports and/or bug fixes
+	2) fixes and/or testing results on platforms not listed below
+	3) comments/suggestions regarding this release in general
+
+To assist in your testing, we've included SimpleScalar PISA and Alpha
+OSF Unix test binaries in the simulator distribution.
+
+To get the release, point your browser at the directory:
+
+	http://www.simplescalar.com
+
+and get the file:
+
+	simplesim-3.0c.tar.gz
+
+Then unpack this in a directory you've made and read the README in the
+"simplesim-3.0/" directory for installation, usage, and testing
+instructions.
+
+We hope you find this release useful, please send comments/fixes/suggestions
+to info@simplescalar.com.  Enjoy!
+
+Regards, -Todd
+
+p.s. the 3.0 release announcement is attached...
+
+
+-- ANNOUNCE --
+
+Greetings, we are pleased to announce the availability of the third major
+release of the SimpleScalar Architectural Research Tool Set.  It is our
+hope that computer architecture researchers and educators will find this
+release of value.  We welcome your feedback, Enjoy!!
+
+
+WHAT IS THE SIMPLESCALAR TOOL SET?
+
+The SimpleScalar Tool Set consists of compiler, assembler, linker and
+simulation tools for the SimpleScalar PISA and Alpha AXP architectures.
+With this tool set, the user can simulate real programs on a range of
+modern processors and systems, using fast execution-driven simulation.  The
+tool set contains many simulators ranging from a fast functional simulator
+to a detailed out-of-order issue processor with a multi-level memory
+system.  The tool set provides researchers and educators with an easily
+extensible, portable, high-performance test bed for systems design or
+instruction.
+
+The SimpleScalar PISA (Portable ISA) instruction set is an extension of
+Hennessy and Patterson's DLX instruction set, including also a number of
+instructions and addressing modes from the MIPS-IV and RS/6000
+instruction set definitions.  SimpleScalar PISA instructions employ a
+64-bit encoding to facilitate instruction set research, e.g., it's
+possible to synthesize instructions or annotate existing instructions,
+or vary the number of registers a program uses.  The Alpha AXP
+architecture is a RISC instruction set developed by DEC.
+
+The SimpleScalar simulator suite includes a wide range of simulation tools
+ranging from simple functional (instruction only, no timing) simulators to
+detailed performance (instruction plus timing) simulators.  The following
+simulators are included in this release:
+
+	sim-fast	-> a very fast functional (i.e., no timing) simulator
+	sim-safe	-> the minimal functional SimpleScalar simulator
+	sim-profile	-> a program profiling simulator
+	sim-cache	-> a multi-level cache simulator
+	sim-cheetah	-> a single-pass multi-configuration cache simulator
+	sim-bpred	-> a branch predictor simulator
+	sim-outorder	-> a detailed out-of-order issue performance (timing)
+			   simulator with a multi-level memory system
+
+All the simulators in the SimpleScalar tools set are execution-driven, as a
+result, there is no need to generate, store, or read instruction trace files
+since all instructions streams are generated on the fly.  In addition,
+execution-driven simulation is an invaluable tool for modeling control and data
+mis-speculation in the performance simulators.
+
+
+WHY WOULD I WANT TO USE THE SIMPLESCALAR TOOL SET?
+
+The SimpleScalar Tool Set has many powerful features, here's the short list:
+
+	- it's free for academic non-commercial use, and all sources are included
+	- it's extensible (because it includes all sources and extensive docs)
+	- it's portable (it run on most any unix-like host including WinNT)
+	- it's fast (on a P6-200, function simulation -> 4+ MIPS, and detailed
+	  out-of-order performance simulation with a multi-level memory
+	  system and mispeculation modeling cruises at 150+ KIPS)
+	- it's detailed (a whole family of simulators are included)
+
+
+WHY WOULD I NOT WANT TO USE THE SIMPLESCALAR TOOL SET?
+
+	- it doesn't execute the instruction set I'm interested in: currently
+	  SimpleScalar only supports the SimpleScalar PISA and Alpha AXP
+	  instruction set architectures
+	- it doesn't support parallel system simulation: currently
+	  SimpleScalar is primarily a uniprocessor simulation environment;
+	  and although work is ongoing to add MP support, other simulation
+	  environments may be more appropriate for your work (e.g., RSIM
+	  from Rice or SimOS from Stanford both support MP simulation)
+	- it doesn't support system simulation: currently SimpleScalar
+	  only supports simulation of the user-level instructions, any
+	  execution within the operation system is not simulated, instead
+	  the SimpleScalar simulators execute the system-level instruction
+	  on behalf of the simulated program, other simulation environments
+	  support system simulation, such as SimOS from Stanford
+
+
+HOW DO I GET IT?
+
+The tool set is available from the University of Wisconsin, to access
+the SimpleScalar Home Page, point your browser at:
+
+	http://www.simplescalar.com
+
+
+WHO WROTE THE SIMPLESCALAR TOOL SET?
+
+The SimpleScalar tool set simulators and GNU compiler ports were written by
+Todd Austin.  The tool set is currently supported by Doug Burger (who wrote
+much of the documentation as well) and Todd Austin.  The GNU compiler chain
+was written by the Free Software Foundation.
+
+
+ON WHICH PLATFORMS DOES IT RUN?
+
+SimpleScalar should port easily to any 32- or 64-bit flavor of UNIX or
+Windows NT, particularly those that support POSIX-compliant system
+calls.  The list of tested platforms are:
+
+		gcc/AIX413/RS6k
+		xlc/AIX413/RS6k
+		gcc/FreeBSD3.0/x86
+		gcc/HPUX/PA-RISC
+		c89/HPUX/PA-RISC
+		gcc/SunOS413/SPARC
+		gcc/Solaris2/SPARC
+		gcc/Solaris2/x86
+		gcc/Linux/x86
+		gcc/Linux/Alpha
+		gcc/DECOSFUnix/Alpha
+		cc/DECOSFUnix/Alpha
+		gcc/CygWin32-WinNT/x86
+		VC++/WinNT/x86
+
+
+HOW CAN I KEEP INFORMED AS TO NEW RELEASES AND ANNOUNCEMENTS?
+
+We have set up a SimpleScalar mailing list. To subscribe, send e-mail to
+majordomo@cs.wisc.edu, with the message body (not the subject header)
+containing "subscribe simplescalar".  Also, watch the SimpleScalar web
+page at:
+
+	http://www.cs.wisc.edu/~mscalar/simplescalar.html
+
+
+WHAT'S NEW IN RELEASE 3.0:
+
+Lots!  Here's a list of the major new features...
+
+    * SimpleScalar now executes multiple instruction sets: SimpleScalar
+      PISA (Portable ISA, the old "SimpleScalar ISA") and Alpha AXP.
+      All simulators and options (e.g., DLite!) are supported for both
+      instruction sets.  See README for details on compiling binaries
+      and configuring the simulators.  See README.retarget for details
+      on how to retarget the SimpleScalar tool set to another
+      instruction set.  As always, the SimpleScalar/PISA tools will
+      build on any supported platform.  The SimpleScalar/Alpha tools
+      will build on any little-endian host with 64-bit integers (either
+      in hardware or via the compiler), the SimpleScalar/Alpha tools are
+      known to be stable on Alpha OSF Unix and Linux/x86 hosts.
+
+    * All simulators now support external I/O traces (EIO traces).
+      Generated with a new simulator (sim-eio), EIO traces capture
+      initial program state and all subsequent external interactions a
+      program has with the operating system.  Using this external I/O
+      trace, any SimpleScalar simulator can re-execute the same
+      execution using only the EIO file; no options, binaries, files,
+      system calls, etc, are needed to re-create the same execution.
+      All other aspects of the execution is identical, i.e., the same
+      functional simulation is performed, either non-speculative or
+      otherwise.  See the file README.eio for usage details.  EIO traces
+      solve a number of perennial problems associated with functional
+      simulation:
+
+	- EIO trace executions are 100% reproducible, since the sources
+	  of irreproducibility (i.e., external interactions such as
+	  reading a date from the OS) are captured in the EIO trace
+	  file; it is now possible to run simulations from EIO traces,
+	  even with mis-speculation modeling, and get *exactly* the same
+	  results ever time!
+
+	- EIO trace files provide a convenient method to execute
+	  interactive programs in batch mode; programs that read any
+	  number of files, user input, or output including network I/O
+	  will read this I/O from a single EIO trace file.
+
+	- EIO trace files are extremely portable, any host that will
+	  build SimpleScalar can execute any EIO trace even if the host
+	  only has minimal minimal system call support, e.g., Windows
+	  NT.  This is because system calls are not performed with EIO
+	  traces, all external interactions are read from the EIO trace
+	  file, which only requires that only simple file I/O be
+	  performed by the simulator.
+
+      In addition, EIO traces provide a convenient means for packaging
+      up an experiment into a single file.  Within the EIO trace file
+      are the options, user environment, file accesses, network I/O,
+      etc.  used to create the original experiment.  Moreover, EIO
+      traces also capture the output of a program, e.g., writes, network
+      output, etc.  The simulators check any output attempted against
+      that recorded in the EIO trace file, making EIO trace files
+      self-validating.  An EIO trace file may be compressed with GZIP or
+      compress, the SimpleScalar simulators will automagically
+      decompress them on the fly, as long as the simulator can locate
+      your GZIP binary.
+
+    * The simulators now compile "out of the box" on many more platforms
+      (listed above); in addition, you should be able to get
+      SimpleScalar up and running with minimal effort on any target with
+      32- or 64-bit integers, IEEE FP, and POSIX-like system calls.  See
+      README.port for details on how to port the SimpleScalar tool set
+      to a new host environment.  In addition, SimpleScalar now builds
+      on Windows NT with either MS VC++ or Cygnus/Win32 tools.  See
+      README.winnt for caveats regarding the Windows NT ports.
+
+
+And here's a list of other sundry enhancements we've made since the
+SimpleScalar 2.0 release:
+
+  Enhancements to the foundation modules:
+
+    * the EXO persistent data structure library has been incorporated
+      into SimpleScalar release 2.1; this library is used by the EIO
+      trace module; it implements extensive collection of scalar and
+      container data structures with run-time typing; once constructed
+      EXO data structures can be automagically written to and read from
+      file streams with a single function call, the EXO library handles
+      all the gory details of interning and externing the data
+      structures from/to ASCII form, generally useful code if you hate
+      to use scanf() and printf() for saving and restoring arbitrary
+      data structures; see "libexo/libexo.h" for details...
+
+    * added explicit fault support to functional simulation component
+      and memory module
+
+    * memory module updated to support 64/32-bit address spaces on
+      64/32-bit machines, now implemented with a dynamically optimized
+      hashed page table
+
+    * added support for multiple register and memory contexts
+
+    * improved loader error messages, e.g., loading Alpha binaries on
+      PISA-configured simulator (or vice versa) indicates specifically
+      what happened
+
+    * added portable myprintf() and myatoq() routines for printing and
+      reading quadword's, respectively; works on machines without hardware
+      quadword data types
+
+    * added gzopen() and gzclose() routines for reading and writing
+      compressed files, updated sysprobe to search for GZIP, if found
+      support is enabled
+
+    * F_IMM (immediate field used by instruction) flag to machine.def flags
+
+    * "contrib/" directory contains various enhancements that (unfortunately)
+      I did not get time to include into the mainline release - there's a
+      lot of gold to mine in that directory, check it out!
+
+    * BITMAP_COUNT_ONES() added to bitmap.h
+
+    * added register pretty printing routines to machine.[hc]
+
+
+  New simulator options/statistics:
+
+    * added option "-max:inst" to limit number of instructions analyzed
+
+    * added simulator and program output redirection (via "-redir:sim"
+      and "redir:prog" options, respectively)
+
+    * added "-nice" option that resets simulator scheduling priority to
+      specified level
+
+    * all simulators now emit command line used to invoke them
+
+    * added fast forward option ("-fastfwd") to sim-outorder that skips a
+      specified number of instructions (using functional simulation)
+      before starting timing simulation
+
+    * explicit BTB sizing option added to branch predictors, use "-btb"
+      option to configure BTB
+
+    * branch predictor updates in sim-outorder can now optionally occur
+      in ID, WB, or CT, user selectable via the "-bpred:spec_update" option
+
+    * return address stack (RAS) performance stats improved
+
+    * added queue statistics for IFQ, RUU, and LSQ; all terms of
+      Little's law are measured and reported; the fraction of cycles in
+      which queue is full is also measured
+
+    * added control registers display command "cregs" to DLite!
+
+    * added "-t" option on sysprobe that probes sizes of various C data types
+
+    * new smaller cleaner minimal functional simulator skeleton
+
+
+  Performance enhancements:
+
+    * added support for fast shifts if host machine can successfully
+      implement them, sysprobe tests if fast shifts work and then sets
+      -DFAST_SRA and -DFAST_SRL accordingly; this also fixes shifts when
+      the high order bit is set for some machines; define -DSLOW_SHIFTS
+      to disable this feature
+
+    * branch predictor module's L2 index computation is more
+      "compatible" to McFarling's version of it, i.e., if the PC xor
+      address component is only part of the index, take the lower order
+      address bits for the other part of the index, rather than the
+      higher order ones
+
+    * sim-fast now autodetects GNU GCC jump table support and enables
+      USE_JUMP_TABLE
+
+    * sim-outorder speculative loads no longer allocate memory pages,
+      this significantly reduces memory requirements for programs with
+      lots of mispeculation (e.g., cc1)
+
+    * speculative fault handling simplified
+
+    * instruction pre-decoding added to loader module for SimpleScalar/PISA,
+      added to sim-fast for SimpleScalar/Alpha
+
+
+  Portability enhancements:
+
+    * reorganized instruction semantics definitions; now using
+      name-mangled macros, this approach is very portable (it even works
+      on MS VC++) and it allows C statements to portably implement
+      instruction semantics
+
+    * reorganized Makefile: it now works with MS VC++ NMAKE, and many
+      host configurations are supplied in the header; added target
+      configuration support; converted "sim-tests" target to use
+      "-redir:sim" and "-redir:prog" options, this eliminates the need
+      for the non-portable "redir" scripts
+
+    * implemented a more portable random() interface
+
+    * added support for MS VC++ compilation on Windows NT
+
+
+And here's a list of fixes we've made since the SimpleScalar 2.0 release:
+
+    * LWL/LWR/SWL/SWR semantics fixed in pisa.def, these instruction now
+      work correctly on big- and little-endian machines, this fixes all
+      previous problems with IJPEG failing during functional simulation
+
+    * fixed a BFD/non-BFD loader problem where tail padding in the text
+      segment was not correctly allocated in simulator memory; when
+      padding region happened to cross a page boundary the final text
+      page has a NULL pointer in mem_table, resulting in a SEGV when
+      trying to access it in instruction pre-decoding
+
+    * sim-outorder speculative memory access functions now return a
+      deterministic value (0) when accessing bogus address/alignment;
+      mis-speculation modeling should now be 100% deterministic with
+      EIO traces
+
+    * fixed speculative quadword store bug (missing most significant word)
+
+    * disabled calls to sbrk() under malloc(), this breaks some
+      malloc() implementation (e.g., newer Linux releases)
+
+    * sim-outorder perfect branch predictor was reseting IFQ head
+      incorrectly (improves sim performance)
+
+    * sim-outorder now really does limit issue width (was always infinite)
+
+    * sim-outorder and sim-cache gave broken error messages if invalid IL2
+      params were specified
+
+    * instruction address compression (64->32 bit) added to sim-cache
+
+    * BITMAP_NOT() fixed
+
+    * return address stack (RAS) update bug fixed (improves pred perf)
+
+    * fixed a cache timing bug that caused some incorrect and *huge* miss
+      latencies around 2 billion cycles; fixes occasional deadlock problems
+      in vortex
+
+    * fixed cache writeback stats for cache flushes
+
+    * fixed DLite! "help" command for invalid commands
+
+    * options package fixes: on/off supported for booleans, relative
+      pathnames, negative integers are now parsed correctly
+
+    * -max:inst is limited to 2147483647 for sim-cheetah due to integer
+      overflow problems in libcheetah (to be fixed...)
+
+    * sim-outorder now computes correct result when a non-speculative
+      register operand is also defined speculative within the same inst
+
+    * Perl scripts now work with Perl 5.0
+
+
+Please send up your comments regarding this tool set, we are continually
+trying to improve it and we appreciate your input.
+
+Best Regards,
+
+Todd Austin
+SimpleScalar LLC, info@simplescalar.com
+

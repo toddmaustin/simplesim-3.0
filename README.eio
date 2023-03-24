@@ -1,0 +1,47 @@
+To use the new external I/O traces (EIO traces) and checkpointing features:
+
+  make an EIO trace:
+
+        sim-eio -trace FOO.eio tests/bin.little/test-fmath
+
+  make an EIO trace but starting 1000000 instructions into the execution:
+
+        sim-eio -fastfwd 1000000 -trace FOO.eio tests/bin.little/test-fmath
+
+  run an EIO trace:
+
+        sim-whatever FOO.eio
+
+  create checkpoint inside an EIO trace execution (eg, @ inst # 1000):
+
+        sim-eio -dump FOO.chkpt 1000: FOO.eio
+
+  run an EIO trace starting at checkpoint:
+
+        sim-whatever -chkpt FOO.chkpt FOO.eio
+
+The EIO traces are self checking, if the data going into the system
+calls from registers or memory ever deviates from the traced run,
+you'll get a detailed error message indicating the inconsistancy.
+Other than the error messages, EIO executions produce no output,
+because they're not really interacting with the OS, just the EIO
+trace and EIO module (eio.[hc]).
+
+The "-dump" option takes two arguments, a checkpoint filename and
+a range, see "sim-eio -h" for details on ranges.  "1000:" means
+trigger the checkpoint at instruction count 1000.
+
+The EIO tracing support is implemented in eio.[hc] and in the libexo
+directory (libexo reads and write EXO files, which is the I/O format
+used by the EIO code).  Look at the support added to sim-safe.c
+to support tracing:
+
+        - predecode is disabled when EIO tracing, since the memory
+          is already predecoded
+
+        - when tracing is enabled, SYSCALL()'s call eio_read_trace()
+          instead of ss_syscall()
+
+Plus, there are eio_*() calls in main.c which set up the initial memory
+image and checkpoints.  That's it, its a very lightweight interface.
+

@@ -1,0 +1,18 @@
+As of SimpleScalar 3.0, the SimpleScalar simulator (for PISA or Alpha)
+should build out-of-the-box on Cygwin32 for Windows NT or XP.
+
+NOTE: the SimpleScalar PISA compiler tools will not build on Windows NT.
+Either build the binaries on another little-endian supported platform,
+or grab them from the binaries release available from the same place
+you found this package.
+
+NOTE1: There are some deficiencies with this port; specifically, some
+of the system calls made by SimpleScalar PISA or Alpha OSF binaries
+have no obvious counterparts under Windows (e.g., getrusage()), when
+these system calls are made, a warning is printed.  A better way to
+use SimpleScalar on Windows NT is to rely completely on extern I/O
+traces (EIO traces).  Generate these on a more capable host and then
+run them on Windows.  Since only file I/O is required to run an EIO
+trace, any tracable program can later re-run under Windows.  See
+README.eio for details...
+

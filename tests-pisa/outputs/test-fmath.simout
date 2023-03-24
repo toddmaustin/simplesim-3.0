@@ -1,0 +1,76 @@
+sim-eio: SimpleScalar/PISA Tool Set version 3.0 of September, 1998.
+Copyright (c) 1994-1998 by Todd M. Austin.  All Rights Reserved.
+
+sim: tracing execution to EIO file `eio.little/test-fmath.eio'...
+sim: command line: ../sim-eio -trace eio.little/test-fmath.eio -redir:sim outputs/test-fmath.simout -redir:prog outputs/test-fmath.progout bin.little/test-fmath 
+
+sim: simulation started @ Thu Aug 27 08:03:03 1998, options follow:
+
+sim-eio: This simulator implements simulator support for generating
+external event traces (EIO traces) and checkpoint files.  External
+event traces capture one execution of a program, and allow it to be
+packaged into a single file for later re-execution.  EIO trace executions
+are 100% reproducible between subsequent executions (on the same platform.
+This simulator also provides functionality to generate checkpoints at
+arbitrary points within an external event trace (EIO) execution.  The
+checkpoint file (along with the EIO trace) can be used to start any
+SimpleScalar simulator in the middle of a program execution.
+
+# -config                     # load configuration from a file
+# -dumpconfig                 # dump configuration to a file
+# -h                    false # print help message    
+# -v                    false # verbose operation     
+# -d                    false # enable debug message  
+# -i                    false # start in Dlite debugger
+-seed                       1 # random number generator seed (0 for timer seed)
+# -q                    false # initialize and terminate immediately
+# -chkpt               <null> # restore EIO trace execution from <fname>
+# -redir:sim     outputs/test-fmath.simout # redirect simulator output to file (non-interactive only)
+# -redir:prog    outputs/test-fmath.progout # redirect simulated program output to file
+-nice                       0 # simulator scheduling priority
+-max:inst                   0 # maximum number of inst's to execute
+-fastfwd                    0 # number of insts skipped before tracing starts
+-trace           eio.little/test-fmath.eio # EIO trace file output file name
+# -dump                <null> # specify checkpoint file and trigger: <fname> <range>
+
+  Checkpoint range triggers are formatted as follows:
+
+    {{@|#}<start>}:{{@|#|+}<end>}
+
+  Both ends of the range are optional, if neither are specified, the range
+  triggers immediately.  Ranges that start with a `@' designate an address
+  range to trigger on, those that start with an `#' designate a cycle count
+  trigger.  All other ranges represent an instruction count range.  The
+  second argument, if specified with a `+', indicates a value relative
+  to the first argument, e.g., 1000:+100 == 1000:1100.
+
+    Examples:   -ptrace FOO.trc #0:#1000
+                -ptrace BAR.trc @2000:
+                -ptrace BLAH.trc :1500
+                -ptrace UXXE.trc :
+
+
+
+sim: writing EIO file initial checkpoint...
+sim: ** starting functional simulation **
+
+sim: ** simulation statistics **
+sim_num_insn                  53129 # total number of instructions executed
+sim_num_refs                  16248 # total number of loads and stores executed
+sim_elapsed_time                  1 # total simulation time in seconds
+sim_inst_rate            53129.0000 # simulation speed (in insts/sec)
+ld_text_base             0x00400000 # program text (code) segment base
+ld_text_size                  79920 # program text (code) size in bytes
+ld_data_base             0x10000000 # program initialized data segment base
+ld_data_size                  12288 # program init'ed `.data' and uninit'ed `.bss' size in bytes
+ld_stack_base            0x7fffc000 # program stack segment base (highest address in stack)
+ld_stack_size                 16384 # program initial stack size
+ld_prog_entry            0x00400140 # program entry point (initial PC)
+ld_environ_base          0x7fff8000 # program environment base address address
+ld_target_big_endian              0 # target executable endian-ness, non-zero if big endian
+mem.page_count                   30 # total number of pages allocated
+mem.page_mem                   120k # total size of memory pages allocated
+mem.ptab_misses                  31 # total first level page table misses
+mem.ptab_accesses            307960 # total page table accesses
+mem.ptab_miss_rate           0.0001 # first level page table miss rate
+

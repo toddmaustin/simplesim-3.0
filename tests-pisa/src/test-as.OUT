@@ -1,0 +1,460 @@
+
+./test-as.o:     file format ss-coff-big
+./test-as.o
+architecture: mips:3000, flags 0x00000031:
+HAS_RELOC, HAS_SYMS, HAS_LOCALS
+start address 0x00000000
+SECTION 0 [.text]	: size 00000950 vma 00000000 align 2**4
+ ALLOC, LOAD, RELOC, CODE
+SECTION 1 [.data]	: size 00000010 vma 00000950 align 2**4
+ ALLOC, LOAD, DATA
+SECTION 2 [.sdata]	: size 00000010 vma 00000960 align 2**4
+ ALLOC, LOAD, DATA
+SECTION 3 [.bss]	: size 00000000 vma 00000970 align 2**4
+ ALLOC
+SYMBOL TABLE:
+[  0] e 00000950 st 0 sc 0 indx fffff     Foo
+[  1] e 00000000 st 0 sc 0 indx fffff     test_la
+[  2] e 00000960 st 0 sc 0 indx fffff     sFoo
+[  3] e 00000088 st 0 sc 0 indx fffff     test_lb
+[  4] e 00000280 st 0 sc 0 indx fffff     test_sw
+[  5] e 00000478 st 0 sc 0 indx fffff     test_dlw
+[  6] e 00000770 st 0 sc 0 indx fffff     test_s.d
+[  7] l 00000000 st b sc 1 indx 9     test-as.s
+      End+1 symbol: 16
+[  8] l 00000950 st 2 sc 2 indx fffff     Foo
+[  9] l 00000000 st 5 sc 1 indx fffff     test_la
+[ 10] l 00000960 st 2 sc d indx fffff     sFoo
+[ 11] l 00000088 st 5 sc 1 indx fffff     test_lb
+[ 12] l 00000280 st 5 sc 1 indx fffff     test_sw
+[ 13] l 00000478 st 5 sc 1 indx fffff     test_dlw
+[ 14] l 00000770 st 5 sc 1 indx fffff     test_s.d
+[ 15] l 00000000 st 8 sc 1 indx 0     test-as.s
+      First symbol: 7
+
+
+Disassembly of section .text:
+00000000 <test_la> lui $a0[4],0
+		RELOC: 00000004 REFHI .data+0xfffff6b0
+00000008 <test_la+8> addiu $a0[4],$a0[4],2384
+		RELOC: 0000000c REFLO .data+0xfffff6b0
+00000010 <test_la+10> addiu $a0[4],$gp[28],-16384
+		RELOC: 00000014 GPREL .sdata+0x00004000
+00000018 <test_la+18> addiu $a0[4],$zero[0],4
+00000020 <test_la+20> addu $a0[4],$a0[4],$a1[5]
+00000028 <test_la+28> addiu $at[1],$zero[0],4
+00000030 <test_la+30> addu $a0[4],$at[1],$a0[4]
+00000038 <test_la+38> lui $a0[4],0
+		RELOC: 0000003c REFHI .data+0xfffff6b0
+00000040 <test_la+40> addiu $a0[4],$a0[4],2384
+		RELOC: 00000044 REFLO .data+0xfffff6b0
+00000048 <test_la+48> addu $a0[4],$a0[4],$a1[5]
+00000050 <test_la+50> lui $at[1],0
+		RELOC: 00000054 REFHI .data+0xfffff6b0
+00000058 <test_la+58> addiu $at[1],$at[1],2384
+		RELOC: 0000005c REFLO .data+0xfffff6b0
+00000060 <test_la+60> addu $a0[4],$at[1],$a0[4]
+00000068 <test_la+68> addiu $a0[4],$gp[28],-16384
+		RELOC: 0000006c GPREL .sdata+0x00004000
+00000070 <test_la+70> addu $a0[4],$a0[4],$a1[5]
+00000078 <test_la+78> addiu $at[1],$gp[28],-16384
+		RELOC: 0000007c GPREL .sdata+0x00004000
+00000080 <test_la+80> addu $a0[4],$at[1],$a0[4]
+00000088 <test_lb> lui $a0[4],0
+		RELOC: 0000008c REFHI .data+0xfffff6b0
+00000090 <test_lb+8> lb $a0[4],2384($a0[4])
+		RELOC: 00000094 REFLO .data+0xfffff6b0
+00000098 <test_lb+10> lb $a0[4],-16384($gp[28])
+		RELOC: 0000009c GPREL .sdata+0x00004000
+000000a0 <test_lb+18> lb $a0[4],($a1[5]+$a0[4])
+000000a8 <test_lb+20> lb $a0[4],($a1[5]+$a0[4])+
+000000b0 <test_lb+28> lb $a0[4],($a1[5]+$a0[4])-
+000000b8 <test_lb+30> lb $a0[4],($a1[5]+$a0[4])^+
+000000c0 <test_lb+38> lb $a0[4],($a1[5]+$a0[4])^-
+000000c8 <test_lb+40> lb $a0[4],4($a1[5])
+000000d0 <test_lb+48> lb $a0[4],4($a1[5])+
+000000d8 <test_lb+50> lb $a0[4],4($a1[5])-
+000000e0 <test_lb+58> lb $a0[4],4($a1[5])^+
+000000e8 <test_lb+60> lb $a0[4],4($a1[5])^-
+000000f0 <test_lb+68> lui $a0[4],0
+		RELOC: 000000f4 REFHI .data+0xfffff6b0
+000000f8 <test_lb+70> addu $a0[4],$a0[4],$a1[5]
+00000100 <test_lb+78> lb $a0[4],2384($a0[4])
+		RELOC: 00000104 REFLO .data+0xfffff6b0
+00000108 <test_lb+80> lui $at[1],0
+		RELOC: 0000010c REFHI .data+0xfffff6b0
+00000110 <test_lb+88> addu $at[1],$at[1],$a0[4]
+00000118 <test_lb+90> lb $a0[4],2384($at[1])
+		RELOC: 0000011c REFLO .data+0xfffff6b0
+00000120 <test_lb+98> lui $a0[4],0
+		RELOC: 00000124 REFHI .data+0xfffff6b0
+00000128 <test_lb+a0> addu $a0[4],$a0[4],$a1[5]
+00000130 <test_lb+a8> lb $a0[4],2384($a0[4])+
+		RELOC: 00000134 REFLO .data+0xfffff6b0
+00000138 <test_lb+b0> lui $at[1],0
+		RELOC: 0000013c REFHI .data+0xfffff6b0
+00000140 <test_lb+b8> addu $at[1],$at[1],$a0[4]
+00000148 <test_lb+c0> lb $a0[4],2384($at[1])+
+		RELOC: 0000014c REFLO .data+0xfffff6b0
+00000150 <test_lb+c8> lui $a0[4],0
+		RELOC: 00000154 REFHI .data+0xfffff6b0
+00000158 <test_lb+d0> addu $a0[4],$a0[4],$a1[5]
+00000160 <test_lb+d8> lb $a0[4],2384($a0[4])-
+		RELOC: 00000164 REFLO .data+0xfffff6b0
+00000168 <test_lb+e0> lui $at[1],0
+		RELOC: 0000016c REFHI .data+0xfffff6b0
+00000170 <test_lb+e8> addu $at[1],$at[1],$a0[4]
+00000178 <test_lb+f0> lb $a0[4],2384($at[1])-
+		RELOC: 0000017c REFLO .data+0xfffff6b0
+00000180 <test_lb+f8> lui $a0[4],0
+		RELOC: 00000184 REFHI .data+0xfffff6b0
+00000188 <test_lb+100> addu $a0[4],$a0[4],$a1[5]
+00000190 <test_lb+108> lb $a0[4],2384($a0[4])^+
+		RELOC: 00000194 REFLO .data+0xfffff6b0
+00000198 <test_lb+110> lui $at[1],0
+		RELOC: 0000019c REFHI .data+0xfffff6b0
+000001a0 <test_lb+118> addu $at[1],$at[1],$a0[4]
+000001a8 <test_lb+120> lb $a0[4],2384($at[1])^+
+		RELOC: 000001ac REFLO .data+0xfffff6b0
+000001b0 <test_lb+128> lui $a0[4],0
+		RELOC: 000001b4 REFHI .data+0xfffff6b0
+000001b8 <test_lb+130> addu $a0[4],$a0[4],$a1[5]
+000001c0 <test_lb+138> lb $a0[4],2384($a0[4])^-
+		RELOC: 000001c4 REFLO .data+0xfffff6b0
+000001c8 <test_lb+140> lui $at[1],0
+		RELOC: 000001cc REFHI .data+0xfffff6b0
+000001d0 <test_lb+148> addu $at[1],$at[1],$a0[4]
+000001d8 <test_lb+150> lb $a0[4],2384($at[1])^-
+		RELOC: 000001dc REFLO .data+0xfffff6b0
+000001e0 <test_lb+158> addu $a0[4],$a1[5],$gp[28]
+000001e8 <test_lb+160> lb $a0[4],-16384($a0[4])
+		RELOC: 000001ec GPREL .sdata+0x00004000
+000001f0 <test_lb+168> addu $at[1],$a0[4],$gp[28]
+000001f8 <test_lb+170> lb $a0[4],-16384($at[1])
+		RELOC: 000001fc GPREL .sdata+0x00004000
+00000200 <test_lb+178> addu $a0[4],$a1[5],$gp[28]
+00000208 <test_lb+180> lb $a0[4],-16384($a0[4])+
+		RELOC: 0000020c GPREL .sdata+0x00004000
+00000210 <test_lb+188> addu $at[1],$a0[4],$gp[28]
+00000218 <test_lb+190> lb $a0[4],-16384($at[1])+
+		RELOC: 0000021c GPREL .sdata+0x00004000
+00000220 <test_lb+198> addu $a0[4],$a1[5],$gp[28]
+00000228 <test_lb+1a0> lb $a0[4],-16384($a0[4])-
+		RELOC: 0000022c GPREL .sdata+0x00004000
+00000230 <test_lb+1a8> addu $at[1],$a0[4],$gp[28]
+00000238 <test_lb+1b0> lb $a0[4],-16384($at[1])-
+		RELOC: 0000023c GPREL .sdata+0x00004000
+00000240 <test_lb+1b8> addu $a0[4],$a1[5],$gp[28]
+00000248 <test_lb+1c0> lb $a0[4],-16384($a0[4])^+
+		RELOC: 0000024c GPREL .sdata+0x00004000
+00000250 <test_lb+1c8> addu $at[1],$a0[4],$gp[28]
+00000258 <test_lb+1d0> lb $a0[4],-16384($at[1])^+
+		RELOC: 0000025c GPREL .sdata+0x00004000
+00000260 <test_lb+1d8> addu $a0[4],$a1[5],$gp[28]
+00000268 <test_lb+1e0> lb $a0[4],-16384($a0[4])^-
+		RELOC: 0000026c GPREL .sdata+0x00004000
+00000270 <test_lb+1e8> addu $at[1],$a0[4],$gp[28]
+00000278 <test_lb+1f0> lb $a0[4],-16384($at[1])^-
+		RELOC: 0000027c GPREL .sdata+0x00004000
+00000280 <test_sw> lui $at[1],0
+		RELOC: 00000284 REFHI .data+0xfffff6b0
+00000288 <test_sw+8> sw $a0[4],2384($at[1])
+		RELOC: 0000028c REFLO .data+0xfffff6b0
+00000290 <test_sw+10> sw $a0[4],-16384($gp[28])
+		RELOC: 00000294 GPREL .sdata+0x00004000
+00000298 <test_sw+18> sw $a0[4],($a1[5]+$a0[4])
+000002a0 <test_sw+20> sw $a0[4],($a1[5]+$a0[4])+
+000002a8 <test_sw+28> sw $a0[4],($a1[5]+$a0[4])-
+000002b0 <test_sw+30> sw $a0[4],($a1[5]+$a0[4])^+
+000002b8 <test_sw+38> sw $a0[4],($a1[5]+$a0[4])^-
+000002c0 <test_sw+40> sw $a0[4],4($a1[5])
+000002c8 <test_sw+48> sw $a0[4],4($a1[5])+
+000002d0 <test_sw+50> sw $a0[4],4($a1[5])-
+000002d8 <test_sw+58> sw $a0[4],4($a1[5])^+
+000002e0 <test_sw+60> sw $a0[4],4($a1[5])^-
+000002e8 <test_sw+68> lui $at[1],0
+		RELOC: 000002ec REFHI .data+0xfffff6b0
+000002f0 <test_sw+70> addu $at[1],$at[1],$a1[5]
+000002f8 <test_sw+78> sw $a0[4],2384($at[1])
+		RELOC: 000002fc REFLO .data+0xfffff6b0
+00000300 <test_sw+80> lui $at[1],0
+		RELOC: 00000304 REFHI .data+0xfffff6b0
+00000308 <test_sw+88> addu $at[1],$at[1],$a0[4]
+00000310 <test_sw+90> sw $a0[4],2384($at[1])
+		RELOC: 00000314 REFLO .data+0xfffff6b0
+00000318 <test_sw+98> lui $at[1],0
+		RELOC: 0000031c REFHI .data+0xfffff6b0
+00000320 <test_sw+a0> addu $at[1],$at[1],$a1[5]
+00000328 <test_sw+a8> sw $a0[4],2384($at[1])+
+		RELOC: 0000032c REFLO .data+0xfffff6b0
+00000330 <test_sw+b0> lui $at[1],0
+		RELOC: 00000334 REFHI .data+0xfffff6b0
+00000338 <test_sw+b8> addu $at[1],$at[1],$a0[4]
+00000340 <test_sw+c0> sw $a0[4],2384($at[1])+
+		RELOC: 00000344 REFLO .data+0xfffff6b0
+00000348 <test_sw+c8> lui $at[1],0
+		RELOC: 0000034c REFHI .data+0xfffff6b0
+00000350 <test_sw+d0> addu $at[1],$at[1],$a1[5]
+00000358 <test_sw+d8> sw $a0[4],2384($at[1])-
+		RELOC: 0000035c REFLO .data+0xfffff6b0
+00000360 <test_sw+e0> lui $at[1],0
+		RELOC: 00000364 REFHI .data+0xfffff6b0
+00000368 <test_sw+e8> addu $at[1],$at[1],$a0[4]
+00000370 <test_sw+f0> sw $a0[4],2384($at[1])-
+		RELOC: 00000374 REFLO .data+0xfffff6b0
+00000378 <test_sw+f8> lui $at[1],0
+		RELOC: 0000037c REFHI .data+0xfffff6b0
+00000380 <test_sw+100> addu $at[1],$at[1],$a1[5]
+00000388 <test_sw+108> sw $a0[4],2384($at[1])^+
+		RELOC: 0000038c REFLO .data+0xfffff6b0
+00000390 <test_sw+110> lui $at[1],0
+		RELOC: 00000394 REFHI .data+0xfffff6b0
+00000398 <test_sw+118> addu $at[1],$at[1],$a0[4]
+000003a0 <test_sw+120> sw $a0[4],2384($at[1])^+
+		RELOC: 000003a4 REFLO .data+0xfffff6b0
+000003a8 <test_sw+128> lui $at[1],0
+		RELOC: 000003ac REFHI .data+0xfffff6b0
+000003b0 <test_sw+130> addu $at[1],$at[1],$a1[5]
+000003b8 <test_sw+138> sw $a0[4],2384($at[1])^-
+		RELOC: 000003bc REFLO .data+0xfffff6b0
+000003c0 <test_sw+140> lui $at[1],0
+		RELOC: 000003c4 REFHI .data+0xfffff6b0
+000003c8 <test_sw+148> addu $at[1],$at[1],$a0[4]
+000003d0 <test_sw+150> sw $a0[4],2384($at[1])^-
+		RELOC: 000003d4 REFLO .data+0xfffff6b0
+000003d8 <test_sw+158> addu $at[1],$a1[5],$gp[28]
+000003e0 <test_sw+160> sw $a0[4],-16384($at[1])
+		RELOC: 000003e4 GPREL .sdata+0x00004000
+000003e8 <test_sw+168> addu $at[1],$a0[4],$gp[28]
+000003f0 <test_sw+170> sw $a0[4],-16384($at[1])
+		RELOC: 000003f4 GPREL .sdata+0x00004000
+000003f8 <test_sw+178> addu $at[1],$a1[5],$gp[28]
+00000400 <test_sw+180> sw $a0[4],-16384($at[1])+
+		RELOC: 00000404 GPREL .sdata+0x00004000
+00000408 <test_sw+188> addu $at[1],$a0[4],$gp[28]
+00000410 <test_sw+190> sw $a0[4],-16384($at[1])+
+		RELOC: 00000414 GPREL .sdata+0x00004000
+00000418 <test_sw+198> addu $at[1],$a1[5],$gp[28]
+00000420 <test_sw+1a0> sw $a0[4],-16384($at[1])-
+		RELOC: 00000424 GPREL .sdata+0x00004000
+00000428 <test_sw+1a8> addu $at[1],$a0[4],$gp[28]
+00000430 <test_sw+1b0> sw $a0[4],-16384($at[1])-
+		RELOC: 00000434 GPREL .sdata+0x00004000
+00000438 <test_sw+1b8> addu $at[1],$a1[5],$gp[28]
+00000440 <test_sw+1c0> sw $a0[4],-16384($at[1])^+
+		RELOC: 00000444 GPREL .sdata+0x00004000
+00000448 <test_sw+1c8> addu $at[1],$a0[4],$gp[28]
+00000450 <test_sw+1d0> sw $a0[4],-16384($at[1])^+
+		RELOC: 00000454 GPREL .sdata+0x00004000
+00000458 <test_sw+1d8> addu $at[1],$a1[5],$gp[28]
+00000460 <test_sw+1e0> sw $a0[4],-16384($at[1])^-
+		RELOC: 00000464 GPREL .sdata+0x00004000
+00000468 <test_sw+1e8> addu $at[1],$a0[4],$gp[28]
+00000470 <test_sw+1f0> sw $a0[4],-16384($at[1])^-
+		RELOC: 00000474 GPREL .sdata+0x00004000
+00000478 <test_dlw> lui $at[1],0
+		RELOC: 0000047c REFHI .data+0xfffff6b0
+00000480 <test_dlw+8> dlw $a0[4],2380($at[1])
+		RELOC: 00000484 REFLO .data+0xfffff6b0
+00000488 <test_dlw+10> add $a0[4],$a1[5],$a0[4]
+00000490 <test_dlw+18> dlw $a0[4],-16384($gp[28])
+		RELOC: 00000494 GPREL .sdata+0x00004000
+00000498 <test_dlw+20> add $a0[4],$a1[5],$a0[4]
+000004a0 <test_dlw+28> dlw $a0[4],($a1[5]+$a0[4])
+000004a8 <test_dlw+30> add $a0[4],$a1[5],$a0[4]
+000004b0 <test_dlw+38> dlw $a0[4],($a1[5]+$a0[4])+
+000004b8 <test_dlw+40> add $a0[4],$a1[5],$a0[4]
+000004c0 <test_dlw+48> dlw $a0[4],($a1[5]+$a0[4])-
+000004c8 <test_dlw+50> add $a0[4],$a1[5],$a0[4]
+000004d0 <test_dlw+58> dlw $a0[4],($a1[5]+$a0[4])^+
+000004d8 <test_dlw+60> add $a0[4],$a1[5],$a0[4]
+000004e0 <test_dlw+68> dlw $a0[4],($a1[5]+$a0[4])^-
+000004e8 <test_dlw+70> add $a0[4],$a1[5],$a0[4]
+000004f0 <test_dlw+78> dlw $a0[4],4($a1[5])
+000004f8 <test_dlw+80> add $a0[4],$a1[5],$a0[4]
+00000500 <test_dlw+88> dlw $a0[4],4($a1[5])+
+00000508 <test_dlw+90> add $a0[4],$a1[5],$a0[4]
+00000510 <test_dlw+98> dlw $a0[4],4($a1[5])-
+00000518 <test_dlw+a0> add $a0[4],$a1[5],$a0[4]
+00000520 <test_dlw+a8> dlw $a0[4],4($a1[5])^+
+00000528 <test_dlw+b0> add $a0[4],$a1[5],$a0[4]
+00000530 <test_dlw+b8> dlw $a0[4],4($a1[5])^-
+00000538 <test_dlw+c0> add $a0[4],$a1[5],$a0[4]
+00000540 <test_dlw+c8> lui $at[1],0
+		RELOC: 00000544 REFHI .data+0xfffff6b0
+00000548 <test_dlw+d0> addu $at[1],$a1[5],$at[1]
+00000550 <test_dlw+d8> dlw $a0[4],2380($at[1])
+		RELOC: 00000554 REFLO .data+0xfffff6b0
+00000558 <test_dlw+e0> add $a0[4],$a1[5],$a0[4]
+00000560 <test_dlw+e8> lui $at[1],0
+		RELOC: 00000564 REFHI .data+0xfffff6b0
+00000568 <test_dlw+f0> addu $at[1],$a0[4],$at[1]
+00000570 <test_dlw+f8> dlw $a0[4],2380($at[1])
+		RELOC: 00000574 REFLO .data+0xfffff6b0
+00000578 <test_dlw+100> add $a0[4],$a1[5],$a0[4]
+00000580 <test_dlw+108> lui $at[1],0
+		RELOC: 00000584 REFHI .data+0xfffff6b0
+00000588 <test_dlw+110> addu $at[1],$a1[5],$at[1]
+00000590 <test_dlw+118> dlw $a0[4],2380($at[1])+
+		RELOC: 00000594 REFLO .data+0xfffff6b0
+00000598 <test_dlw+120> add $a0[4],$a1[5],$a0[4]
+000005a0 <test_dlw+128> lui $at[1],0
+		RELOC: 000005a4 REFHI .data+0xfffff6b0
+000005a8 <test_dlw+130> addu $at[1],$a0[4],$at[1]
+000005b0 <test_dlw+138> dlw $a0[4],2380($at[1])+
+		RELOC: 000005b4 REFLO .data+0xfffff6b0
+000005b8 <test_dlw+140> add $a0[4],$a1[5],$a0[4]
+000005c0 <test_dlw+148> lui $at[1],0
+		RELOC: 000005c4 REFHI .data+0xfffff6b0
+000005c8 <test_dlw+150> addu $at[1],$a1[5],$at[1]
+000005d0 <test_dlw+158> dlw $a0[4],2380($at[1])-
+		RELOC: 000005d4 REFLO .data+0xfffff6b0
+000005d8 <test_dlw+160> add $a0[4],$a1[5],$a0[4]
+000005e0 <test_dlw+168> lui $at[1],0
+		RELOC: 000005e4 REFHI .data+0xfffff6b0
+000005e8 <test_dlw+170> addu $at[1],$a0[4],$at[1]
+000005f0 <test_dlw+178> dlw $a0[4],2380($at[1])-
+		RELOC: 000005f4 REFLO .data+0xfffff6b0
+000005f8 <test_dlw+180> add $a0[4],$a1[5],$a0[4]
+00000600 <test_dlw+188> lui $at[1],0
+		RELOC: 00000604 REFHI .data+0xfffff6b0
+00000608 <test_dlw+190> addu $at[1],$a1[5],$at[1]
+00000610 <test_dlw+198> dlw $a0[4],2380($at[1])^+
+		RELOC: 00000614 REFLO .data+0xfffff6b0
+00000618 <test_dlw+1a0> add $a0[4],$a1[5],$a0[4]
+00000620 <test_dlw+1a8> lui $at[1],0
+		RELOC: 00000624 REFHI .data+0xfffff6b0
+00000628 <test_dlw+1b0> addu $at[1],$a0[4],$at[1]
+00000630 <test_dlw+1b8> dlw $a0[4],2380($at[1])^+
+		RELOC: 00000634 REFLO .data+0xfffff6b0
+00000638 <test_dlw+1c0> add $a0[4],$a1[5],$a0[4]
+00000640 <test_dlw+1c8> lui $at[1],0
+		RELOC: 00000644 REFHI .data+0xfffff6b0
+00000648 <test_dlw+1d0> addu $at[1],$a1[5],$at[1]
+00000650 <test_dlw+1d8> dlw $a0[4],2380($at[1])^-
+		RELOC: 00000654 REFLO .data+0xfffff6b0
+00000658 <test_dlw+1e0> add $a0[4],$a1[5],$a0[4]
+00000660 <test_dlw+1e8> lui $at[1],0
+		RELOC: 00000664 REFHI .data+0xfffff6b0
+00000668 <test_dlw+1f0> addu $at[1],$a0[4],$at[1]
+00000670 <test_dlw+1f8> dlw $a0[4],2380($at[1])^-
+		RELOC: 00000674 REFLO .data+0xfffff6b0
+00000678 <test_dlw+200> add $a0[4],$a1[5],$a0[4]
+00000680 <test_dlw+208> addu $at[1],$a1[5],$gp[28]
+00000688 <test_dlw+210> dlw $a0[4],-16384($at[1])
+		RELOC: 0000068c GPREL .sdata+0x00004000
+00000690 <test_dlw+218> add $a0[4],$a1[5],$a0[4]
+00000698 <test_dlw+220> addu $at[1],$a0[4],$gp[28]
+000006a0 <test_dlw+228> dlw $a0[4],-16384($at[1])
+		RELOC: 000006a4 GPREL .sdata+0x00004000
+000006a8 <test_dlw+230> add $a0[4],$a1[5],$a0[4]
+000006b0 <test_dlw+238> addu $at[1],$a1[5],$gp[28]
+000006b8 <test_dlw+240> dlw $a0[4],-16384($at[1])+
+		RELOC: 000006bc GPREL .sdata+0x00004000
+000006c0 <test_dlw+248> add $a0[4],$a1[5],$a0[4]
+000006c8 <test_dlw+250> addu $at[1],$a0[4],$gp[28]
+000006d0 <test_dlw+258> dlw $a0[4],-16384($at[1])+
+		RELOC: 000006d4 GPREL .sdata+0x00004000
+000006d8 <test_dlw+260> add $a0[4],$a1[5],$a0[4]
+000006e0 <test_dlw+268> addu $at[1],$a1[5],$gp[28]
+000006e8 <test_dlw+270> dlw $a0[4],-16384($at[1])-
+		RELOC: 000006ec GPREL .sdata+0x00004000
+000006f0 <test_dlw+278> add $a0[4],$a1[5],$a0[4]
+000006f8 <test_dlw+280> addu $at[1],$a0[4],$gp[28]
+00000700 <test_dlw+288> dlw $a0[4],-16384($at[1])-
+		RELOC: 00000704 GPREL .sdata+0x00004000
+00000708 <test_dlw+290> add $a0[4],$a1[5],$a0[4]
+00000710 <test_dlw+298> addu $at[1],$a1[5],$gp[28]
+00000718 <test_dlw+2a0> dlw $a0[4],-16384($at[1])^+
+		RELOC: 0000071c GPREL .sdata+0x00004000
+00000720 <test_dlw+2a8> add $a0[4],$a1[5],$a0[4]
+00000728 <test_dlw+2b0> addu $at[1],$a0[4],$gp[28]
+00000730 <test_dlw+2b8> dlw $a0[4],-16384($at[1])^+
+		RELOC: 00000734 GPREL .sdata+0x00004000
+00000738 <test_dlw+2c0> add $a0[4],$a1[5],$a0[4]
+00000740 <test_dlw+2c8> addu $at[1],$a1[5],$gp[28]
+00000748 <test_dlw+2d0> dlw $a0[4],-16384($at[1])^-
+		RELOC: 0000074c GPREL .sdata+0x00004000
+00000750 <test_dlw+2d8> add $a0[4],$a1[5],$a0[4]
+00000758 <test_dlw+2e0> addu $at[1],$a0[4],$gp[28]
+00000760 <test_dlw+2e8> dlw $a0[4],-16384($at[1])^-
+		RELOC: 00000764 GPREL .sdata+0x00004000
+00000768 <test_dlw+2f0> add $a0[4],$a1[5],$a0[4]
+00000770 <test_s.d> lui $at[1],0
+		RELOC: 00000774 REFHI .data+0xfffff6b0
+00000778 <test_s.d+8> s.s $f4,2380($at[1])
+		RELOC: 0000077c REFLO .data+0xfffff6b0
+00000780 <test_s.d+10> add $a0[4],$a1[5],$a0[4]
+00000788 <test_s.d+18> s.s $f4,-16384($gp[28])
+		RELOC: 0000078c GPREL .sdata+0x00004000
+00000790 <test_s.d+20> add $a0[4],$a1[5],$a0[4]
+00000798 <test_s.d+28> s.d $f4,($a1[5]+$a0[4])
+000007a0 <test_s.d+30> add $a0[4],$a1[5],$a0[4]
+000007a8 <test_s.d+38> s.d $f4,($a1[5]+$a0[4])+
+000007b0 <test_s.d+40> add $a0[4],$a1[5],$a0[4]
+000007b8 <test_s.d+48> s.d $f4,($a1[5]+$a0[4])-
+000007c0 <test_s.d+50> add $a0[4],$a1[5],$a0[4]
+000007c8 <test_s.d+58> s.d $f4,($a1[5]+$a0[4])^+
+000007d0 <test_s.d+60> add $a0[4],$a1[5],$a0[4]
+000007d8 <test_s.d+68> s.d $f4,($a1[5]+$a0[4])^-
+000007e0 <test_s.d+70> add $a0[4],$a1[5],$a0[4]
+000007e8 <test_s.d+78> s.d $f4,4($a1[5])
+000007f0 <test_s.d+80> add $a0[4],$a1[5],$a0[4]
+000007f8 <test_s.d+88> s.d $f4,4($a1[5])+
+00000800 <test_s.d+90> add $a0[4],$a1[5],$a0[4]
+00000808 <test_s.d+98> s.d $f4,4($a1[5])-
+00000810 <test_s.d+a0> add $a0[4],$a1[5],$a0[4]
+00000818 <test_s.d+a8> s.d $f4,4($a1[5])^+
+00000820 <test_s.d+b0> add $a0[4],$a1[5],$a0[4]
+00000828 <test_s.d+b8> s.d $f4,4($a1[5])^-
+00000830 <test_s.d+c0> add $a0[4],$a1[5],$a0[4]
+00000838 <test_s.d+c8> lui $at[1],0
+		RELOC: 0000083c REFHI .data+0xfffff6b0
+00000840 <test_s.d+d0> addu $at[1],$a1[5],$at[1]
+00000848 <test_s.d+d8> s.s $f4,2380($at[1])
+		RELOC: 0000084c REFLO .data+0xfffff6b0
+00000850 <test_s.d+e0> add $a0[4],$a1[5],$a0[4]
+00000858 <test_s.d+e8> lui $at[1],0
+		RELOC: 0000085c REFHI .data+0xfffff6b0
+00000860 <test_s.d+f0> addu $at[1],$a1[5],$at[1]
+00000868 <test_s.d+f8> s.s $f4,2380($at[1])+
+		RELOC: 0000086c REFLO .data+0xfffff6b0
+00000870 <test_s.d+100> add $a0[4],$a1[5],$a0[4]
+00000878 <test_s.d+108> lui $at[1],0
+		RELOC: 0000087c REFHI .data+0xfffff6b0
+00000880 <test_s.d+110> addu $at[1],$a1[5],$at[1]
+00000888 <test_s.d+118> s.s $f4,2380($at[1])-
+		RELOC: 0000088c REFLO .data+0xfffff6b0
+00000890 <test_s.d+120> add $a0[4],$a1[5],$a0[4]
+00000898 <test_s.d+128> lui $at[1],0
+		RELOC: 0000089c REFHI .data+0xfffff6b0
+000008a0 <test_s.d+130> addu $at[1],$a1[5],$at[1]
+000008a8 <test_s.d+138> s.s $f4,2380($at[1])^+
+		RELOC: 000008ac REFLO .data+0xfffff6b0
+000008b0 <test_s.d+140> add $a0[4],$a1[5],$a0[4]
+000008b8 <test_s.d+148> lui $at[1],0
+		RELOC: 000008bc REFHI .data+0xfffff6b0
+000008c0 <test_s.d+150> addu $at[1],$a1[5],$at[1]
+000008c8 <test_s.d+158> s.s $f4,2380($at[1])^-
+		RELOC: 000008cc REFLO .data+0xfffff6b0
+000008d0 <test_s.d+160> add $a0[4],$a1[5],$a0[4]
+000008d8 <test_s.d+168> addu $at[1],$a1[5],$gp[28]
+000008e0 <test_s.d+170> s.s $f4,-16384($at[1])
+		RELOC: 000008e4 GPREL .sdata+0x00004000
+000008e8 <test_s.d+178> add $a0[4],$a1[5],$a0[4]
+000008f0 <test_s.d+180> addu $at[1],$a1[5],$gp[28]
+000008f8 <test_s.d+188> s.s $f4,-16384($at[1])+
+		RELOC: 000008fc GPREL .sdata+0x00004000
+00000900 <test_s.d+190> add $a0[4],$a1[5],$a0[4]
+00000908 <test_s.d+198> addu $at[1],$a1[5],$gp[28]
+00000910 <test_s.d+1a0> s.s $f4,-16384($at[1])-
+		RELOC: 00000914 GPREL .sdata+0x00004000
+00000918 <test_s.d+1a8> add $a0[4],$a1[5],$a0[4]
+00000920 <test_s.d+1b0> addu $at[1],$a1[5],$gp[28]
+00000928 <test_s.d+1b8> s.s $f4,-16384($at[1])^+
+		RELOC: 0000092c GPREL .sdata+0x00004000
+00000930 <test_s.d+1c0> add $a0[4],$a1[5],$a0[4]
+00000938 <test_s.d+1c8> addu $at[1],$a1[5],$gp[28]
+00000940 <test_s.d+1d0> s.s $f4,-16384($at[1])^-
+		RELOC: 00000944 GPREL .sdata+0x00004000
+00000948 <test_s.d+1d8> add $a0[4],$a1[5],$a0[4]

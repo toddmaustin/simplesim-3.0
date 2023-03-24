@@ -1,0 +1,184 @@
+	SimpleScalar Frequently Asked Questions
+	---------------------------------------
+
+Q: How do I ...
+
+A: Look at the SimpleScalar Hacker's Guide in the file hack_guide.pdf, if your
+   question is not answered in there, then look for your question in this
+   FAQ, if you don't find it there, then e-mail your question to SimpleScalar
+   LLC (info@simplescalar.com).
+
+
+Q: Why don't I get the same number of instructions/references/etc each time
+   I run my program?
+
+A: It is very difficult to produce the same exact execution each time a program
+   executes on the SimpleScalar simulators.  Many variations in any particular
+   execution are possible, including:
+
+	- calls to time() and getrusage() will produce different results
+	- redirecting output will cause subtle changes in printf() execution
+	- the size of your environment, which is imported into the simulated
+	  virtual memory space, affects the starting location of a programs
+	  stack pointer
+	- small variations in floating point across platforms can effect
+	  execution
+
+   Fortunately, all variations are very small, on the order of a few thousand
+   instructions at the most.
+
+
+Q: Why don't the perl scripts work?
+
+A: Perhaps you did not modify the first line of the script, change it to
+   indicate where your perl executable is located.
+
+
+Q: What is instruction address compression?
+
+A: Address compression (via the -icompress flag on sim-cache and sim-outorder)
+   linearly scales text reference addresses from the 64-bit instruction domain
+   to a comparable address produced by 32-bit instructions.  We support this
+   option because the base SimpleScalar instruction set definition does fit
+   into a 32-bit encoding, but it has been encoded into 64-bits to ease 
+   modification and addition of new instructions.  This option is useful when
+   unified cache levels are employed (without unified cache levels, simply
+   doubling the block size of the I-caches will have the same effect).
+
+
+Q: Whenever I try to run binaries, I always get the error: "binary endian does
+   not match host endian", what is wrong?
+
+A: Your binaries are the wrong endian!  Either you mis-configured GCC, GAS
+   or GLD, or you grabbed the wrong binary release.  Reconfigure the compilers
+   to the opposite endian, or get the other binary release.  To determine the
+   endian of your host machine, run "sysprobe -s", located in the simplescalar
+   simulator directory.
+
+
+Q: Why doesn't SimpleScalar compile on my machine?
+
+A: We may not have tested on your platform.  Fortunately, the SimpleScalar tool
+   set it not difficult to port, you will likely only have to modify the
+   simulator file syscall.c.  See the documentation in syscall.h and syscall.c
+   for details on porting the simulator.
+
+
+Q: What's the deal with that "ssbig-na-sstrix-" prefix?!?!?
+
+A: That prefix follows the cross compiler naming format used by the GNU
+compiler chain.  The first prefix, "ssbig" or "sslittle" signifies the
+architecture as big- or little-endian simplescalar, respectively.  The
+second part of the prefix "na" signifies the manufacturer, i.e., not
+applicable.  And the last prefix part, "sstrix", designates the operations
+system, which we call SSTrix, a variant of Ultrix for the SimpleScalar
+tool set.
+
+
+Q: Why can't I get SimpleScalar/x86 to work?
+
+A: SimpleScalar/x86 only works on Linux/x86 and it only supports functional
+   simulation.  This codes was written by Steve Bennett
+   (sbennett@ichips.intel.com), contact him for more information.  This code
+   is not supported.
+
+Q: How rigorously has SIM-OUTORDERS's performance been verified?  What kind of
+   verification experiments have been done?
+
+A: There have been four approaches to validating the results produced
+   by SIM-OUTORDER:
+
+	1) micro-benchmark validation, we've run a number of small
+	   programs to test various parts of the machine, this is
+	   why release 2 has pipetrace support, since this makes
+	   this process easier to perform
+
+	2) correlation with independent simulators, we've done
+	   performance validation with the multiscalar simulators,
+	   which were developed independently over the Simplescalar
+	   framework; when SIM-OUTORDER was configured comparable to
+	   a dynamically scheduled stage processor, we found
+	   comparable results, within 5% for SPEC92, we've also
+	   compared to other published results, but this has been
+	   less productive, since SIM-OUTORDER is more detailed than
+	   many of the other dynamically scheduled processor
+	   simulators on which we have published numbers
+
+	3) regression correlation, we've been careful to always run
+	   performance regression simulation with previous versions
+	   of SIM-OUTORDER (config/regress.cfg "dumbs down" release 2
+	   SIM-OUTORDER to run like the release 1 SIM-OUTORDER), if
+	   there's any deviation we track it down and fix the problem
+
+	4) code inspections, many folks at Madison, Intel, and other
+	   schools have read the SIM-OUTORDER code to understand
+	   how it works, this has uncovered occasional performance
+	   bugs, and it increases our confidence that the code models
+	   a reasonably detailed microarchitecture correctly
+
+  This is about the best it gets for a non-production machine model.  Of course,
+  we can't ensure that the model is without bugs - use appropriate caution.
+
+
+Q: Why doesn't DLite! work with sim-outorder?
+
+A: Actually it does, but it takes a bit of practice to understand the output.
+DLite! shows you the "view" of the program from the fetch stage of the
+pipeline, as a result, if the fetch stage is stalled or mispredicting into
+bogus memory, you'll see those "invalid memory" messages; step the simulator
+a while and you'll see the instructions show up.  The bottom line: it's
+non-trivial to integrate a debugger with a pipeline simulator since there
+are so many "views" of architected state depending on which pipestage you
+examine state from.  The most valuable aspects of the sim-outorder DLite!
+debugger are the "mstate" commands which allow one to probe all of the state
+in the pipeline.  Check them out with "mstate help".
+
+Q: How does Simplescalar exit simulation?
+
+A: When an exit() system call occurs (implemented in syscall.c), the
+implementing code makes a longjmp() to the point in main() where setjmp()
+was called.  That setjmp() covers a small piece of code that computes total
+runtime and then it calls a stats function that dumps final statistics,
+finally the simulator terminates by calling exit() for real.
+
+Q: Has simplescalar been ported to NT?
+
+A: Hi, the simulators and binutils from pre-release 2 builds (and passes
+self test) on NT with the Cygwin32 GNU tools.  I have not tried building
+GCC for SimpleScalar, however.
+
+>From README.winnt:
+--
+Starting in release 2.0, the simulators build under x86/WinNT.  To build them,
+however, you will need the following:
+
+        1) Cygnus' cygwin32 GNU tool chain release,
+           available from: ftp://ftp.cygnus.com/pub/gnu-win32/
+
+        2) little-endian program binaries, since the SimpleScalar GNU
+           GCC/GAS/GLD ports have not been re-hosted to WinNT (yet),
+           either 1) build the binaries on another little-endian
+           supported platform, or grab them from the binaries release
+           available from the same place you found this package
+
+Then, follow the install instructions in the README file.
+
+There are still some minor problems with this port; specifically, some of
+the system calls made by SimpleScalar binaries have no obvious counterparts
+under WinNT (e.g., getrusage()), when these system calls are made, a
+warning is printed.  More testing is needed, please send us any bugs/fixes
+that you find if you use this port.
+
+Steve Reinhardt ported the simulators to the WinNT/Cygnus environment.
+
+Q: How can I use the simplescalar-2.0 stats package to print the contents of
+an array.
+
+A: Hi, use stat_reg_dist() to register an array that the stats package will
+print.  Unlike the scalar stats, the stats package will allocate the array,
+and you should update the elements of the array using the stat_add_sample()
+and stat_add_samples() functions. Sparse arrays can also be made with
+stat_reg_sdist().  Look at stats.h for documentation regarding the
+interfaces, and see sim-profile.c for examples of how to use these functions.
+I believe that module uses just about every kind of scalar and array stat.
+

@@ -1,0 +1,39 @@
+The SimpleScalar simulators and GNU GCC/GAS/GLD ports were written by
+Todd Austin.
+
+The SimpleScalar tool set documentation where written by Doug Burger and
+Todd Austin.
+
+The SimpleScalar tool set is currently maintained by SimpleScalar LLC
+(info@simplescalar.com).
+
+The SimpleScalar simulator design is based on simulators written by
+Scott Breach, Manoj Franklin, Sriram Vajapeyam, and Guri Sohi.
+
+The compiler tool chain (GNU GCC/GAS/GLD) were developed by the Free Software
+Foundation.
+
+The two-level adaptive branch predictor was written by Dionisios
+Pnevmatikatos.
+
+Kevin Skadron implemented many new branch predictors and the return address
+stack.
+
+Steve Reinhardt ported the simulators to the WinNT/Cygnus environment.
+
+Kevin Skadron, Haitham Akkary, Artur Klauser, and Milo Martin contributed many
+fixes for SimpleScalar release 2.0, thanks!
+
+Kevin Skadron, Milo Martin, Matt Farrens, obrien@cs.ucdavis.edu, Artur Klauser,
+Steve Reinhardt, Alain Kagi, Manoj Plakal, and Sanjay Patel contributed
+fixes for SimpleScalar release 2.1, thanks!
+
+Murali Annavaram, Brad Calder, Matt Farrens, Andy Glew, Sebastien Hily, Bruce
+Jacob, Artur Klauser, Alain Kagi, Milo Martin, Manoj Plakal, Subbarao
+Palacharla, Sanjay Patel, Matt Postiff, Steven Raasch, Steve Reinhardt, Glenn
+Reinman, Amir Roth, Kevin Skadron, Srikanth Srinivasan, Dean Tullsen,
+Gary Tyson, Chris Weaver, and Emmett Witchel contributed fixes and
+enhancements for SimpleScalar release 3.0, thanks!
+
+Many of our users have contributed bug reports, fixes and porting tips, thanks!
+

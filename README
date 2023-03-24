@@ -1,0 +1,137 @@
+OVERVIEW:
+
+This README file is for the SimpleScalar simulator release 3.0.  This release
+is available from:
+
+	http://www.simplescalar.com
+
+in the file simplesim-3v0d.tar.gz.
+
+
+TO INSTALL:
+
+The following details how to build and install the SimpleScalar simulators:
+
+	a) vi Makefile
+
+	Make sure all compile options are set for your host, we've listed
+	the options for the OS/compiler combinations that were tested,
+	uncomment one of these if appropriate.  You'll likely not have to
+	change anything for the supported hosts, and if you need to change
+	anything, it will likely be the CC variable (which specifies
+	the ANSI C compiler to use to build the simulators).  NOTE: the
+	simulators must be built with an ANSI-C compatible compiler, if you
+	have problems with your compiler, try using GNU GCC as it is known
+	to build the simulators on all the supported platforms.
+
+	b) make config-pisa			(to build SimpleScalar/PISA)
+	   or
+	   make config-alpha			(to build SimpleScalar/Alpha)
+
+	Execute one of the above commands to configure the SimpleScalar
+	build.  The SimpleScalar/PISA build executes SimpleScalar PISA
+	(Portable ISA) binaries (the old "SimpleScalar ISA"), and the
+	SimpleScalar/Alpha build executes statically linked Alpha OSF
+	binaries.  If building with Cygwin/32 (www.cygwin.com) on Windows,
+        be sure to unpack with "tar" to set up the symbolic links.
+
+	c) make
+
+	This builds the simplescalar simulators.
+
+	d) make sim-tests
+
+	This tests the simulators, this step will take anywhere from ~5 min
+	to an hour, depending on the performance of your host.  Inspect the
+	output of this command, when the script diff's the outputs of the
+	simulators against the known good outputs, there should be no
+	differences.
+
+	e) vi pipeview.pl textprof.pl
+
+	Configure these two perl scripts by placing the location of your
+	perl executable on the first line of each script.
+
+
+BUILDING BINARIES FOR SIMPLESCALAR
+
+SimpleScalar/PISA binaries must be built using the SimpleScalar GNU tool
+chain (e.g., GCC, GAS, GLD), available from:
+
+    http://www.cs.wisc.edu/~mscalar/simplescalar.html
+
+Prebuilt SimpleScalar PISA (Portable ISA) binaries, for big- and
+little-endian hosts, are also available from that site.
+
+SimpleScalar/Alpha binaries must be built on Digitial Alpha OSF Unix (or
+with a suitable cross compiler).  Any Alpha OSF Unix compiler should
+work, however, the binaries must be statically linked.  To statically
+link a binary, add the "-static" flag to the link line of GNU GCC, or add
+"-non_shared" to the link line of the DEC compilers.  NOTE: if you get
+a "dnet_conn not found" error when linking Alpha OSF binaries, add
+"-ldnet_stub" to your link line.
+
+
+IS SIMPLESCALAR FREE?
+
+No, but academic users (e.g., users at education institutions, U.S.
+government research labs, and non-profit research institutes) may use
+SimpleScalar tools free-of-charge for non-commercial research and
+instruction. Support is provided to non-commercial users as resources
+permit. Any use of SimpleScalar software, in binary or source form,
+in a commercial setting or application (e.g., use within a for-profit
+business, use to generate intellectual property for patents, or use
+to implement a consulting contract) for any reason, purpose or goal
+is commercial use of SimpleScalar software and thus requires a
+commercial use license from SimpleScalar LLC.  Contact SimpleScalar
+LLC at info@simplescalar.com for commercial licensing details.
+
+
+PUBLISHING PAPERS WITH SIMPLESCALAR
+
+When publishing a paper with SimpleScalar results, please refer to the
+specific target you use as "SimpleScalar/PISA" or "SimpleScalar/Alpha".
+In addition, please make reference to the latest SimpleScalar report,
+this reference is available from:
+
+    http://www.simplescalar.com
+
+Above all, please use good judgement when doing research with the
+SimpleScalar tool set.  Before publishing any numbers you should validate
+your results.  Use the pipetrace facility, combined with microbenchmarks,
+to test our code, your code, and your intuitions.  If the simulators are
+not appropriate for your experiments, build a new simulator or use
+another more appropriate simulation tool set.  The SimpleScalar tool set
+is not appropriate for all computer architecture research, and it's
+certainly not any substitute for good science.
+
+
+USING SIMPLESCALAR FOR INSTRUCTION
+
+Many instructors have found the SimpleScalar tools useful in their
+courses.  To make this process as painless as possible, we've made
+available an instructors kit that includes pre-built binaries with
+small-ish inputs.  Also included are directions on how to build and
+run the experiments, suggested projects at all levels, and slides
+that the instructor can use to introduce students to the Simplescalar
+tool set.  The instructions kit is available from http://www.simplescalar.com.
+
+
+FOR MORE INFORMATION:
+
+For general documentation on the tool set, see the hacker's guide in the
+file "hack_guide.{pfd,ps,ppt}".  Frequently asked questions are answered
+in the FAQ file.  And suggested projects are listed in the file PROJECTS.
+The simulators (the sim-* executables) are self-documenting, just run
+them with the "-h" flag.
+
+To get plugged into the SimpleScalar scene, visit the SimpleScalar web
+site (www.simplescalar.com).  And please send us your comments regarding
+this tool set, we are continually trying to improve it and we appreciate
+your input.
+
+Best Regards,
+
+Todd Austin
+SimpleScalar LLC
+info@simplescalar.com

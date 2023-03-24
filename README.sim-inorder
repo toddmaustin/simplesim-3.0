@@ -1,0 +1,4 @@
+Sim-inorder is no longer maintained and has been removed from the SimpleScalar
+tool set distribution.  If you would like to perform in-order issue processor
+simulations, use sim-outorder with the "-issue:inorder" flag enabled.
+
