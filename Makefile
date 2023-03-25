@@ -80,8 +80,10 @@
 CC = gcc
 OFLAGS = -O0 -g -Wall
 MFLAGS = `./sysprobe -flags`
+_MFLAGS = `../sysprobe -flags`
 MLIBS  = `./sysprobe -libs` -lm
 ENDIAN = `./sysprobe -s`
+_ENDIAN = `../sysprobe -s`
 MAKE = make
 AR = ar qcv
 AROPT =
@@ -395,7 +397,7 @@ sim-outorder$(EEXT):	sysprobe$(EEXT) sim-outorder.$(OEXT) cache.$(OEXT) bpred.$(
 
 exo libexo/libexo.$(LEXT): sysprobe$(EEXT)
 	cd libexo $(CS) \
-	$(MAKE) "MAKE=$(MAKE)" "CC=$(CC)" "AR=$(AR)" "AROPT=$(AROPT)" "RANLIB=$(RANLIB)" "CFLAGS=$(MFLAGS) $(FFLAGS) $(OFLAGS)" "OEXT=$(OEXT)" "LEXT=$(LEXT)" "EEXT=$(EEXT)" "X=$(X)" "RM=$(RM)" libexo.$(LEXT)
+	$(MAKE) "MAKE=$(MAKE)" "CC=$(CC)" "AR=$(AR)" "AROPT=$(AROPT)" "RANLIB=$(RANLIB)" "CFLAGS=$(_MFLAGS) $(FFLAGS) $(OFLAGS)" "OEXT=$(OEXT)" "LEXT=$(LEXT)" "EEXT=$(EEXT)" "X=$(X)" "RM=$(RM)" libexo.$(LEXT)
 
 cheetah libcheetah/libcheetah.$(LEXT): sysprobe$(EEXT)
 	cd libcheetah $(CS) \
@@ -417,37 +419,37 @@ diffs:
 
 sim-tests sim-tests-nt: sysprobe$(EEXT) $(PROGS)
 	cd tests $(CS) \
-	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(ENDIAN)" tests \
+	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(_ENDIAN)" tests \
 		"DIFF=$(DIFF)" "SIM_DIR=.." "SIM_BIN=sim-fast$(EEXT)" \
 		"X=$(X)" "CS=$(CS)" $(CS) \
 	cd ..
 	cd tests $(CS) \
-	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(ENDIAN)" tests \
+	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(_ENDIAN)" tests \
 		"DIFF=$(DIFF)" "SIM_DIR=.." "SIM_BIN=sim-safe$(EEXT)" \
 		"X=$(X)" "CS=$(CS)" $(CS) \
 	cd ..
 	cd tests $(CS) \
-	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(ENDIAN)" tests \
+	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(_ENDIAN)" tests \
 		"DIFF=$(DIFF)" "SIM_DIR=.." "SIM_BIN=sim-cache$(EEXT)" \
 		"X=$(X)" "CS=$(CS)" $(CS) \
 	cd ..
 	#cd tests $(CS) \
-	#$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(ENDIAN)" tests \
+	#$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(_ENDIAN)" tests \
 	#	"DIFF=$(DIFF)" "SIM_DIR=.." "SIM_BIN=sim-cheetah$(EEXT)" \
 	#	"X=$(X)" "CS=$(CS)" $(CS) \
 	#cd ..
 	cd tests $(CS) \
-	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(ENDIAN)" tests \
+	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(_ENDIAN)" tests \
 		"DIFF=$(DIFF)" "SIM_DIR=.." "SIM_BIN=sim-bpred$(EEXT)" \
 		"X=$(X)" "CS=$(CS)" $(CS) \
 	cd ..
 	cd tests $(CS) \
-	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(ENDIAN)" tests \
+	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(_ENDIAN)" tests \
 		"DIFF=$(DIFF)" "SIM_DIR=.." "SIM_BIN=sim-profile$(EEXT)" \
 		"X=$(X)" "CS=$(CS)" "SIM_OPTS=-all" $(CS) \
 	cd ..
 	cd tests $(CS) \
-	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(ENDIAN)" tests \
+	$(MAKE) "MAKE=$(MAKE)" "RM=$(RM)" "ENDIAN=$(_ENDIAN)" tests \
 		"DIFF=$(DIFF)" "SIM_DIR=.." "SIM_BIN=sim-outorder$(EEXT)" \
 		"X=$(X)" "CS=$(CS)" $(CS) \
 	cd ..
