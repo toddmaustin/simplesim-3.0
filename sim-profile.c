@@ -684,7 +684,7 @@ sim_main(void)
       addr = 0; is_write = FALSE;
 
       /* set default fault - none */
-      fault = md_fault_none;
+      fault = md_fault_none; (void)fault;
 
       /* decode the instruction */
       MD_SET_OPCODE(op, inst);

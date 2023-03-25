@@ -1182,7 +1182,7 @@ sys_syscall(struct regs_t *regs,	/* registers to access */
     case OSF_SYS_old_recvfrom:
     case OSF_SYS_recvfrom:
       {
-	int addr_len;
+	unsigned addr_len;
 	char *buf;
 	struct sockaddr *a_sock;
       
@@ -1964,14 +1964,13 @@ sys_syscall(struct regs_t *regs,	/* registers to access */
 
     case OSF_SYS_table:
       {
-	qword_t table_id, table_index, buf_addr, num_elem, size_elem;
+	qword_t table_id, table_index, buf_addr, num_elem;
 	struct osf_tbl_sysinfo sysinfo;
 	
 	table_id = regs->regs_R[MD_REG_A1];
 	table_index = regs->regs_R[MD_REG_A2];
 	buf_addr = regs->regs_R[MD_REG_A3];
 	num_elem = regs->regs_R[MD_REG_A4];
-	size_elem = regs->regs_R[MD_REG_A5];
 	
 	switch(table_id)
 	{
@@ -3100,7 +3099,7 @@ sys_syscall(struct regs_t *regs,	/* registers to access */
 	/* get socket name */
 	char *buf;
 	word_t osf_addrlen;
-	int addrlen;
+	unsigned addrlen;
 
 	/* get simulator memory parameters to host memory */
 	mem_bcopy(mem_fn, mem, Read,
@@ -3152,7 +3151,7 @@ sys_syscall(struct regs_t *regs,	/* registers to access */
 	/* get socket name */
 	char *buf;
 	word_t osf_addrlen;
-	int addrlen;
+	unsigned addrlen;
 
 	/* get simulator memory parameters to host memory */
 	mem_bcopy(mem_fn, mem, Read,

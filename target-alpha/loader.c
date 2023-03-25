@@ -159,6 +159,7 @@ ld_load_prog(char *fname,		/* program to load */
   int i;
   qword_t temp;
   md_addr_t sp, data_break = 0, null_ptr = 0, argv_addr, envp_addr;
+  (void)data_break;
 
   if (eio_valid(fname))
     {
@@ -231,7 +232,6 @@ ld_load_prog(char *fname,		/* program to load */
     fatal("checkpoints only supported while EIO tracing");
 
 #ifdef BFD_LOADER
-
   {
     bfd *abfd;
     asection *sect;

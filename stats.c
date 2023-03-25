@@ -654,7 +654,7 @@ print_dist(struct stat_stat_t *stat,	/* stat variable */
 
   /* count and sum entries */
   bcount = 0; btotal = 0.0; bvar = 0.0; bsqsum = 0.0;
-  imax = 0; imin = UINT_MAX;
+  imax = 0; imin = UINT_MAX; (void)imax, (void)imin;
   for (i=0; i<stat->variant.for_dist.arr_sz; i++)
     {
       bcount++;

@@ -3864,7 +3864,7 @@ ruu_dispatch(void)
 	    }
 	}
 
-      br_taken = (regs.regs_NPC != (regs.regs_PC + sizeof(md_inst_t)));
+      br_taken = (regs.regs_NPC != (regs.regs_PC + sizeof(md_inst_t))); (void)br_taken;
       br_pred_taken = (pred_PC != (regs.regs_PC + sizeof(md_inst_t)));
 
       if ((pred_PC != regs.regs_NPC && pred_perfect)
@@ -4445,7 +4445,7 @@ sim_main(void)
       int icount;
       md_inst_t inst;			/* actual instruction bits */
       enum md_opcode op;		/* decoded opcode enum */
-      md_addr_t target_PC;		/* actual next/target PC address */
+      md_addr_t target_PC; (void)target_PC;		/* actual next/target PC address */
       md_addr_t addr;			/* effective address, if load/store */
       int is_write;			/* store? */
       byte_t temp_byte = 0;		/* temp variable for spec mem access */
