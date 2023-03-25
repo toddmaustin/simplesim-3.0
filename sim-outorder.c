@@ -3720,7 +3720,7 @@ ruu_dispatch(void)
   half_t temp_half = 0;			/* " ditto " */
   word_t temp_word = 0;			/* " ditto " */
 #ifdef HOST_HAS_QWORD
-  qword_t temp_qword = 0;		/* " ditto " */
+  qword_t temp_qword = 0; (void)temp_qword;		/* " ditto " */
 #endif /* HOST_HAS_QWORD */
   enum md_fault_type fault;
 
@@ -4452,7 +4452,7 @@ sim_main(void)
       half_t temp_half = 0;		/* " ditto " */
       word_t temp_word = 0;		/* " ditto " */
 #ifdef HOST_HAS_QWORD
-      qword_t temp_qword = 0;		/* " ditto " */
+      qword_t temp_qword = 0; (void)temp_qword;		/* " ditto " */
 #endif /* HOST_HAS_QWORD */
       enum md_fault_type fault;
 
