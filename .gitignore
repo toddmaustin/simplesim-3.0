@@ -1,8 +1,6 @@
 *.o
 .*.swp
 libexo/libexo.a
-tests-alpha/results/*
-tests-pisa/results/*
 sim-bpred
 sim-cache
 sim-eio
