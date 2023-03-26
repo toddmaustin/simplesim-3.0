@@ -26,7 +26,7 @@ computer architecture field. For example, there is no misspeculation path in
 an instruction trace and typically no data values. I was inspired by the
 execution-drive approach used in the Multiscalar simulator, but it was too
 closely tied to the Multiscalar architecture, which I wasn't working on. What
-I needed was something a little more simple that the Multiscalar simulator,
+I needed was something a little more simple than the Multiscalar simulator,
 hence the project named "SimpleScalar".
 
 Guided by my programming experience while working at Xerox, where Butler
