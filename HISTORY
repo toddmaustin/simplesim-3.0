@@ -1,0 +1,77 @@
+SimpleScalar is a collection of computer architecture simulators useful for
+uniprocessor research and education. I (Todd Austin) created the SimpleScalar
+tools during my PhD studies at University of Wisconsin, Madison. Near the end
+of my PhD, I released the tools under an open source license with the help of
+Doug Burger.
+
+I started developing SimpleScalar after I moved from Programming Language
+research to Computer Architecture research in the summer of 1993. My
+inspiration for SimpleScalar came in part from working with Jim Larus, who was
+a strong proponent of sharing research infrastructure with other researchers.
+This may sound unremarkable today, but at that time I received much advice
+from others suggesting that I would be giving away the crown jewels if
+I decided to open source my research simulator.
+
+The other inspiration for SimpleScalar came from Manoj Franklin and Dionisios
+Pnevmatikatos. At the time, they were working on the Multiscalar simulator,
+which was a large microarchitecture project at University of Wisconsin,
+Madison. The simulator they were using was very powerful because it utilized
+execution-driven simulation, which means that the simulator actually executed
+the instructions that were being simulated. This, too, may seem quite
+unremarkable, but at the time nearly all simulators were trace-driven. They
+would open a file of instructions, captured from a hardware execution trace,
+and then estimate the performance of the trace on the new microarchitecture.
+This approach had limitations that were holding back innovation in the
+computer architecture field. For example, there is no misspeculation path in
+an instruction trace and typically no data values. I was inspired by the
+execution-drive approach used in the Multiscalar simulator, but it was too
+closely tied to the Multiscalar architecture, which I wasn't working on. What
+I needed was something a little more simple that the Multiscalar simulator,
+hence the project named "SimpleScalar".
+
+Guided by my programming experience while working at Xerox, where Butler
+Lampson famously said, "Be prepared to throw one away". I ended up throwing
+away two SimpleScalar implementations. The first version wasn't very
+presentable or flexible, but it got the job done for the early part of my PhD
+research. Mid-1994, I decided to reimplement SimpleScalar in its entirety,
+adopting a much more modular software architecture, and also adopting the ISA
+definition abstractions that are still used today.  (The SimpleScalar
+simulators have no idea which instruction set they are using, all those
+details are in the machine-specific DEF files.) In the third rebuild, I added
+debugging and the EIO tracing capabilities. External I/O (EOI) traces were
+a mechanism used to share benchmarks without having to build and package the
+benchmarks for sharing. These traces are still used today for testing the
+simulator builds.
+
+In 1996 with the help of Doug Burger, an open-source version of SimpleScalar
+was released. This was an important event in my career, since I learned much
+from supporting the open-source version of SimpleScalar. First, I was
+reassured to learn that releasing your research infrastructure is actually
+a good thing that renders many personal and professional benefits. As
+SimpleScalar became more popular, it became clear to me that it was helping to
+steer the course of computer architecture research. I recall one time
+attending the MICRO conference and scanning the proceedings to learn that
+nearly half of the papers in the conference were using SimpleScalar. In fact,
+a very prominent computer architect once approached me and told me that
+SimpleScalar had single-handedly set back progress in multiprocessor research
+by nearly a decade, simply because it was "too easy to do uniprocessor
+microarchitecture research with SimpleScalar". Fortunately, today there is
+a rich array of multiprocessor simulators that researchers can choose from.
+
+Second, I learned (and this may just be my own experience) that nearly all of
+the feedback I received from SimpleScalar users was negative. In the nearly
+thirty years that I have been interacting with SimpleScalar users, nearly
+always they are expressing their frustration at using my tools. This motivated
+me to improve their design, but these efforts never changed the overwhelmingly
+negative aspects of users' feedback. I found this aspect of my experience with
+SimpleScalar to be the most challenging to deal with. This experience, in
+part, taught me to not rely on the approval and accolades of others, but
+rather to take satisfaction that teaching well, mentoring well, and setting
+and pursuing research goals that have measurable impact on the field.  As of
+March 2023, over 7000 published research papers have used SimpleScalar as
+their evaluation infrastructure!
+
+  Todd Austin
+  todd.m.austin@gmail.com
+  March 2023
+
