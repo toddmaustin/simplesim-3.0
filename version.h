@@ -57,7 +57,7 @@
 #error Cannot decode SimpleScalar target...
 #endif
 
-#define VER_MAJOR		3	/* third release */
+#define VER_MAJOR		3	/* fourth release */
 #define VER_MINOR		0
 
-#define VER_UPDATE	        "August, 2003"
+#define VER_UPDATE	        "March, 2023"

@@ -1,18 +1,21 @@
 OVERVIEW:
 
-This README file is for the SimpleScalar simulator release 3.0.  This release
+This README file is for the SimpleScalar simulator release 3.0e.  This release
 is available from:
 
-	http://www.simplescalar.com
-
-in the file simplesim-3v0d.tar.gz.
-
+	https://github.com/toddmaustin/simplesim-3.0
 
 TO INSTALL:
 
 The following details how to build and install the SimpleScalar simulators:
 
-	a) vi Makefile
+  a) git clone https://github.com/toddmaustin/simplesim-3.0
+
+  Clone the SimpleScalar 3.0 repository into your local simplesim-3.0/
+  directory. This is a public repository, so you won't even need a
+  GitHub account to get access to this code.
+
+	b) vi Makefile
 
 	Make sure all compile options are set for your host, we've listed
 	the options for the OS/compiler combinations that were tested,
@@ -24,7 +27,7 @@ The following details how to build and install the SimpleScalar simulators:
 	have problems with your compiler, try using GNU GCC as it is known
 	to build the simulators on all the supported platforms.
 
-	b) make config-pisa			(to build SimpleScalar/PISA)
+	c) make config-pisa			(to build SimpleScalar/PISA)
 	   or
 	   make config-alpha			(to build SimpleScalar/Alpha)
 
@@ -35,11 +38,11 @@ The following details how to build and install the SimpleScalar simulators:
 	binaries.  If building with Cygwin/32 (www.cygwin.com) on Windows,
         be sure to unpack with "tar" to set up the symbolic links.
 
-	c) make
+	d) make
 
 	This builds the simplescalar simulators.
 
-	d) make sim-tests
+	e) make sim-tests
 
 	This tests the simulators, this step will take anywhere from ~5 min
 	to an hour, depending on the performance of your host.  Inspect the
@@ -47,7 +50,7 @@ The following details how to build and install the SimpleScalar simulators:
 	simulators against the known good outputs, there should be no
 	differences.
 
-	e) vi pipeview.pl textprof.pl
+	f) vi pipeview.pl textprof.pl
 
 	Configure these two perl scripts by placing the location of your
 	perl executable on the first line of each script.
@@ -125,13 +128,12 @@ in the FAQ file.  And suggested projects are listed in the file PROJECTS.
 The simulators (the sim-* executables) are self-documenting, just run
 them with the "-h" flag.
 
-To get plugged into the SimpleScalar scene, visit the SimpleScalar web
-site (www.simplescalar.com).  And please send us your comments regarding
-this tool set, we are continually trying to improve it and we appreciate
-your input.
+To get plugged into the SimpleScalar scene, visit the SimpleScalar GitHub
+respository (https://github.com/toddmaustin/simplesim-3.0).  And please
+send us your comments regarding this tool set, we are continually trying
+to improve it and we appreciate your input.
 
 Best Regards,
 
 Todd Austin
-SimpleScalar LLC
-info@simplescalar.com
+todd.m.austin@gmail.com
